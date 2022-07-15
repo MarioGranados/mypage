@@ -3,17 +3,16 @@ package com.mypage.mypage.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Social_Media")
-public class SocialMedia {
-
+@Table(name="link_stats")
+public class LinkStats {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long socialId;
+    private long id;
 
     @Column
-    private String social;
+    private long views;
 
     @Column
-    private String url;
+    private long clicks;
 
 }

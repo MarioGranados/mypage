@@ -35,7 +35,4 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Link> links;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<SocialMedia> socialMedia;
-
 }
