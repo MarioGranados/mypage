@@ -1,6 +1,7 @@
 const ProfilePageMobile = () => {
     return(
         <>
+
         </>
     );
 
