@@ -10,6 +10,7 @@ import {
     Route,
     Link,
 } from "react-router-dom";
+import Pricing from "./Pages/Pricing";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/pricing" element={<Pricing />} />
+
           </Routes>
       </BrowserRouter>
   );

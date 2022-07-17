@@ -5,11 +5,19 @@ import Footer from "../Components/Footer";
 
 const SignUp = () => {
     const [passwordMatch, setPasswordMatch] = useState(false);
-    let handleForm = () => {
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [username, setUsername] = useState('');
+    let handleForm = (e) => {
+        console.log(true)
     }
-    let handleSubmit = (passwordMatch) => {
-        if (passwordMatch) {
+    let handleSubmit = (e) => {
+        e.preventDefault()
+        if(password === confirmPassword) {
+            setPasswordMatch(true)
+        }
+        if(passwordMatch) {
             handleForm();
         }
     }
@@ -28,24 +36,42 @@ const SignUp = () => {
 
                         <div className="form-floating">
                             <input type="email" className="form-control" id="username" name='username'
-                                   placeholder="mypage/username"/>
+                                   required
+                                   placeholder="mypage/username"
+                                   onChange={(e) => {
+                                       setUsername(e.target.value);
+                                   }}
+                            />
                             <label htmlFor="username">mypage/ username</label>
                         </div>
 
                         <div className="form-floating">
                             <input type="email" className="form-control" id="email" name='email'
-                                   placeholder="name@example.com"/>
+                                   required
+                                   placeholder="name@example.com"
+                                   onChange={(e) => {
+                                       setEmail(e.target.value);
+                                   }}
+                            />
                             <label htmlFor="email">Email address</label>
                         </div>
                         <div className="form-floating">
                             <input type="password" className="form-control" id="password" name='password'
-                                   placeholder="Password"/>
+                                   required
+                                   placeholder="Password"
+                                   onChange={(e) => {setPassword(e.target.value)}}
+                            />
                             <label htmlFor="password">Password</label>
                         </div>
 
                         <div className="form-floating">
                             <input type="password" className="form-control" id="confirmPassword" name='confirmPassword'
-                                   placeholder="Password"/>
+                                   required
+                                   placeholder="Password"
+                                   onChange={(e) => {
+                                       setConfirmPassword(e.target.value);
+                                   }}
+                            />
                             <label htmlFor="confirmPassword">Confirm Password</label>
                         </div>
 
@@ -56,7 +82,7 @@ const SignUp = () => {
                             </label>
                             <p className='mt-3'>View our privacy stuff here</p>
                         </div>
-                        <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                        <button className="w-100 btn btn-lg btn-primary" type='submit' onClick={handleSubmit}>Register</button>
                         <p className="mt-5 mb-3 text-muted">&copy; 2022–2022</p>
                     </form>
                 </div>
