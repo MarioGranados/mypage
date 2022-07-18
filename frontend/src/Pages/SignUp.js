@@ -1,33 +1,38 @@
 import './Login.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Users, {createUser} from "../Components/Utils";
+
 
 const SignUp = () => {
+
     const [passwordMatch, setPasswordMatch] = useState(false);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [username, setUsername] = useState('');
-    let handleForm = (e) => {
-        console.log(true)
-    }
+
+
     let handleSubmit = (e) => {
-        e.preventDefault()
-        if(password === confirmPassword) {
-            setPasswordMatch(true)
+        e.preventDefault();
+        let user = {
+            username: username,
+            email: email,
+            password: password,
         }
-        if(passwordMatch) {
-            handleForm();
-        }
+        console.log(user);
+
+        createUser(user)
     }
+
 
     return (
         <>
             <Navbar/>
             <div className='text-center justify-content-center d-flex align-content-center vh-100 b'>
                 <div className="form-signin w-100 mx-auto">
-                    <form >
+                    <form onSubmit={handleSubmit}>
                         <img className="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72"
                              height="57"/>
                         <h1 className="h3 mb-3 fw-normal">Create Your Page</h1>
@@ -35,7 +40,7 @@ const SignUp = () => {
                         {passwordMatch ? <p className='text-danger'>Passwords do not match</p> : null}
 
                         <div className="form-floating">
-                            <input type="email" className="form-control" id="username" name='username'
+                            <input type="text" className="form-control" id="username" name='username'
                                    required
                                    placeholder="mypage/username"
                                    onChange={(e) => {
@@ -82,7 +87,7 @@ const SignUp = () => {
                             </label>
                             <p className='mt-3'>View our privacy stuff here</p>
                         </div>
-                        <button className="w-100 btn btn-lg btn-primary" type='submit' onClick={handleSubmit}>Register</button>
+                        <button className="w-100 btn btn-lg btn-primary" type={"submit"}>Register</button>
                         <p className="mt-5 mb-3 text-muted">&copy; 2022–2022</p>
                     </form>
                 </div>
