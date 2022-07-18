@@ -17,13 +17,18 @@ public class UserController {
         this.userRepo = userRepo;
     }
 
-    @GetMapping
+    //fetch requests to recieve all users
+    @GetMapping("/users")
     List<User> all() {
         return userRepo.findAll();
     }
+
+    //fetch post request
     @PostMapping("/users")
     User newUser(@RequestBody User user) {
         return userRepo.save(user);
     }
+
+
 
 }
