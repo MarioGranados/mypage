@@ -20,11 +20,9 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/pricing" element={<Pricing />} />
               <Route path="/links" element={<ProfilePageMobile />} />
-
-
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/profile" element={<ProfilePage />} />
           </Routes>
       </BrowserRouter>
   );
