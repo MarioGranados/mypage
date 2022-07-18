@@ -2,7 +2,7 @@ import './Login.css';
 import {useEffect, useState} from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import Users, {createUser} from "../Components/Utils";
+import {createUser, USER_API_BASE_URL} from "../Components/Utils";
 
 
 const SignUp = () => {
@@ -17,7 +17,7 @@ const SignUp = () => {
     let handleSubmit = (e) => {
         e.preventDefault();
         let user = {
-            username: username,
+            userName: username,
             email: email,
             password: password,
         }
@@ -25,6 +25,12 @@ const SignUp = () => {
 
         createUser(user)
     }
+
+    useEffect(() => {
+        fetch(USER_API_BASE_URL)
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+    },[])
 
 
     return (

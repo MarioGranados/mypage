@@ -11,6 +11,7 @@ import {
     Link,
 } from "react-router-dom";
 import Pricing from "./Pages/Pricing";
+import ProfilePageMobile from "./Pages/ProfilePageMobile";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/links" element={<ProfilePageMobile />} />
+
 
           </Routes>
       </BrowserRouter>

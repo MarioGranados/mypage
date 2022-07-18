@@ -13,3 +13,9 @@ export const createUser = (user) => {
         .then((response) => response.json())
         .then((json) => console.log(json));
 }
+
+export const getUser = () => {
+    fetch(USER_API_BASE_URL )
+        .then((response) => response.json())
+        .then((json) => {return json});
+}
