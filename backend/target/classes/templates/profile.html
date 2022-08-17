@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<html lang="en">
+<head th:replace="partials :: header">
+    <meta charset="UTF-8">
+    <title>My Page</title>
+</head>
+<body>
+
+<nav th:replace="partials :: navbar"></nav>
+<div class="container text-center">
+    <h1 class="display-4 mx-4">Profile Name</h1>
+    <div th:replace="partials :: link"></div>
+    <div th:replace="partials :: link"></div>
+    <div th:replace="partials :: link"></div>
+    <div th:replace="partials :: link"></div>
+    <div th:replace="partials :: link"></div>
+</div>
+
+
+<footer th:replace="partials :: footer"></footer>
+<script th:replace="partials :: scripts"></script>
+</body>
+</html>
