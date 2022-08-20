@@ -1,7 +1,7 @@
 package com.application.MyPage.Models;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Table(name = "user")
@@ -24,9 +24,6 @@ public class User {
 
     @Column
     private String bio;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Link> links;
 
     public User() {
 
@@ -87,11 +84,4 @@ public class User {
         this.bio = bio;
     }
 
-    public List<Link> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<Link> links) {
-        this.links = links;
-    }
 }

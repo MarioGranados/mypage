@@ -1,5 +1,7 @@
 package com.application.MyPage.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,18 +24,18 @@ public class Link {
     @Column
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User User;
+    @OneToOne
+    private User user;
 
     public Link() {}
 
-    public Link(Long linkId, String URL, String thumbnail, String title, String description) {
+    public Link(Long linkId, String URL, String thumbnail, String title, String description, User user) {
         this.linkId = linkId;
         this.URL = URL;
         this.thumbnail = thumbnail;
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
     public Long getLinkId() {
@@ -76,11 +78,11 @@ public class Link {
         this.description = description;
     }
 
-    public com.application.MyPage.Models.User getUser() {
-        return User;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser(com.application.MyPage.Models.User user) {
-        User = user;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

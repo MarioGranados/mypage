@@ -15,14 +15,19 @@ public class SocialMedia {
     private String url;
     @Column
     private String logo;
+
+    @OneToOne
+    private User user;
+
     public SocialMedia() {
     }
 
-    public SocialMedia(Long id, String name, String url, String logo) {
+    public SocialMedia(Long id, String name, String url, String logo, User user) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.logo = logo;
+        this.user = user;
     }
 
     public Long getId() {
@@ -55,5 +60,13 @@ public class SocialMedia {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
