@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "social_media")
 public class SocialMedia {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     @Column
