@@ -41,6 +41,8 @@ public class ProfileController {
 
     @PostMapping("/profile/add-link")
     private String addALink(@ModelAttribute Link link) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        link.setUser(user);
         linkRepo.save(link);
         return "redirect:/profile";
     }
