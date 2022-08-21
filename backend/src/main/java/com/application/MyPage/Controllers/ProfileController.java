@@ -30,12 +30,8 @@ public class ProfileController {
     private String profile(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
+        model.addAttribute("link", new Link());
         model.addAttribute("links", linkRepo.findAll());
-        return "profile";
-    }
-
-    @PostMapping("/profile")
-    private String profilePost() {
         return "profile";
     }
 
