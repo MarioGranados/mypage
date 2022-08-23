@@ -7,10 +7,7 @@ import com.application.MyPage.Repo.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +39,21 @@ public class ProfileController {
         linkRepo.save(link);
         return "redirect:/profile";
     }
+
+    @PostMapping("/profile/edit")
+    private String editLink(@ModelAttribute Link link) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Link updatedLink = linkRepo.findByLinkId(link.getLinkId());
+        linkRepo.save(updatedLink);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/profile/delete")
+    private String deleteLink(@ModelAttribute Link link) {
+        Link linkToBeDeleted = linkRepo.findByLinkId(link.getLinkId());
+        linkRepo.delete(linkToBeDeleted);
+        return "redirect:/profile";
+    }
+
 
 }
