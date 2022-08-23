@@ -6,15 +6,11 @@
 </head>
 <body>
 <nav th:replace="partials :: navbar"></nav>
-<h1>Create an account</h1>
-
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
-            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each
-                required form group has a validation state that can be triggered by attempting to submit the form
-                without completing it.</p>
+            <h1 class="display-4 fw-bold lh-1 mb-3">Create An Account</h1>
+            <p class="col-lg-10 fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At commodi sint totam unde. Autem, pariatur?.</p>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
             <form class="p-4 p-md-5 border rounded-3 bg-light" th:action="@{/signup}" method="POST" th:object="${user}"
@@ -54,18 +50,27 @@
 <script th:replace="partials :: scripts"></script>
 <script>
 
+    function formErrorMessage (errorMessage, form) {
+        const newDiv = document.createElement("div");
+        const error = document.createTextNode(errorMessage)
+        newDiv.classList.add("text-danger")
+        newDiv.append(error);
+        form.insertBefore(newDiv, form.children[1])
+    }
+
     let handleSignUpForm = () => {
         const password = document.querySelector("#password").value;
         const confirmPassword = document.querySelector("#confirmPassword").value;
         const form = document.querySelector("#signUpForm");
 
         if (password !== confirmPassword) {
-            const newDiv = document.createElement("div");
-            const error = document.createTextNode("Your Passwords don't match")
-            newDiv.classList.add("text-danger")
-            newDiv.append(error);
-            form.insertBefore(newDiv, form.children[1])
-        } else {
+            formErrorMessage("Your Passwords don't Match", form);
+        } else if (password === "" || confirmPassword === "") {
+            formErrorMessage("Your Passwords cannot be blank", form)
+        } else if (password === null) {
+            formErrorMessage("Regex will go here", form)
+        }
+        else {
             form.submit();
         }
     }

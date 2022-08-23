@@ -40,19 +40,41 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    @PostMapping("/profile/edit")
-    private String editLink(@ModelAttribute Link link) {
+    @GetMapping ("/profile/{id}/edit")
+    private String editLink(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Link updatedLink = linkRepo.findByLinkId(link.getLinkId());
+        Link updatedLink = linkRepo.findByLinkId(id);
         linkRepo.save(updatedLink);
         return "redirect:/profile";
     }
 
-    @PostMapping("/profile/delete")
-    private String deleteLink(@ModelAttribute Link link) {
-        Link linkToBeDeleted = linkRepo.findByLinkId(link.getLinkId());
+    @GetMapping("/profile/{id}/delete")
+    private String deleteLink(@PathVariable Long id) {
+        Link linkToBeDeleted = linkRepo.findByLinkId(id);
         linkRepo.delete(linkToBeDeleted);
         return "redirect:/profile";
+    }
+
+    @PostMapping("/profile/bio")
+    private String editBio(@RequestParam (name = "bio") String bio) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setBio(bio);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/profile/status")
+    private String setStatus(@RequestParam (name = "bio") String status) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setStatus(status);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/profile/edit-profile")
+    private String editProfile(@ModelAttribute User user) {
+        User updatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //coppy method here
+        return "redirect:/profile";
+
     }
 
 

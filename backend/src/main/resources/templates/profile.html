@@ -18,6 +18,10 @@
 <nav th:replace="partials :: navbar"></nav>
 <div class="container text-center">
     <h1 class="display-4 mx-4"><span th:text="${user.getUsername()}"></span></h1>
+    <h5>
+        <span th:text="${user.getBio()}"></span>
+    </h5>
+
 
     <div th:replace="partials :: link"></div>
 
