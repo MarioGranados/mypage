@@ -1,26 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: header">
-  <meta charset="UTF-8" />
-  <title>Sign up</title>
+    <meta charset="UTF-8"/>
+    <title>Sign up</title>
 </head>
 <body>
 <nav th:replace="partials :: navbar"></nav>
 <h1>Create an account</h1>
-<form th:action="@{/signup}" method="POST" th:object="${user}">
-  <label for="username">Username</label>
-  <input id="username" th:field="*{username}" />
 
-  <label for="email">Email</label>
-  <input id="email" th:field="*{email}" />
-
-  <label for="password">Password</label>
-  <input id="password" type="password" th:field="*{password}" />
-
-  <input value="Sign me up!" type="submit" />
-</form>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
+            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered by attempting to submit the form
+                without completing it.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" th:action="@{/signup}" method="POST" th:object="${user}"
+                  id="signUpForm">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                           th:field="*{email}">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Password"
+                           th:field="*{password}">
+                    <label for="password">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword">
+                    <label for="confirmPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" onclick="event.preventDefault(); handleSignUpForm()">Sign up</button>
+                <hr class="my-4">
+                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+            </form>
+        </div>
+    </div>
+</div>
 
 <footer th:replace="partials :: footer"></footer>
 <script th:replace="partials :: scripts"></script>
+<script>
+
+    let handleSignUpForm = () => {
+        let password = document.querySelector("#password").value;
+        let confirmPassword = document.querySelector("#confirmPassword").value;
+        let form = document.querySelector("#signUpForm");
+        if (password !== confirmPassword) {
+            console.log('error');
+        } else {
+            form.submit();
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.application.MyPage.Controllers;
 
 import com.application.MyPage.Models.User;
+import com.application.MyPage.Models.UserWithRoles;
 import com.application.MyPage.Repo.UserRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,11 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        //will set roles here later
+/*
+        UserWithRoles userWithRoles = new UserWithRoles(user);
+*/
+
         userDao.save(user);
         return "redirect:/login";
     }

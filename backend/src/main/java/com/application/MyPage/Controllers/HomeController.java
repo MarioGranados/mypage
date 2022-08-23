@@ -11,8 +11,8 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/")
+/*    @PostMapping("/")
     public String postHomePage() {
         return "index";
-    }
+    }*/
 }
