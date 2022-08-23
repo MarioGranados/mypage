@@ -54,13 +54,26 @@
 <script th:replace="partials :: scripts"></script>
 <script>
 
+    function formErrorMessage (errorMessage, form) {
+        const newDiv = document.createElement("div");
+        const error = document.createTextNode(errorMessage)
+        newDiv.classList.add("text-danger")
+        newDiv.append(error);
+        form.insertBefore(newDiv, form.children[1])
+    }
     let handleSignUpForm = () => {
-        let password = document.querySelector("#password").value;
-        let confirmPassword = document.querySelector("#confirmPassword").value;
-        let form = document.querySelector("#signUpForm");
+        const password = document.querySelector("#password").value;
+        const confirmPassword = document.querySelector("#confirmPassword").value;
+        const form = document.querySelector("#signUpForm");
+
         if (password !== confirmPassword) {
-            console.log('error');
-        } else {
+            formErrorMessage("Your Passwords don't Match", form);
+        } else if (password === "" || confirmPassword === "") {
+            formErrorMessage("Your Passwords cannot be blank", form)
+        } else if (password === null) {
+            formErrorMessage("Regex will go here", form)
+        }
+        else {
             form.submit();
         }
     }

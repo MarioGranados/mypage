@@ -34,7 +34,7 @@
                     <label for="password">Password</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword">
                     <label for="confirmPassword">Password</label>
                 </div>
                 <div class="checkbox mb-3">
@@ -53,12 +53,18 @@
 <footer th:replace="partials :: footer"></footer>
 <script th:replace="partials :: scripts"></script>
 <script>
+
     let handleSignUpForm = () => {
-        let password = document.querySelector("#password").value;
-        let confirmPassword = document.querySelector("#confirmPassword").value;
-        let form = document.querySelector("#signUpForm");
+        const password = document.querySelector("#password").value;
+        const confirmPassword = document.querySelector("#confirmPassword").value;
+        const form = document.querySelector("#signUpForm");
+
         if (password !== confirmPassword) {
-            console.log("error");
+            const newDiv = document.createElement("div");
+            const error = document.createTextNode("Your Passwords don't match")
+            newDiv.classList.add("text-danger")
+            newDiv.append(error);
+            form.insertBefore(newDiv, form.children[1])
         } else {
             form.submit();
         }
