@@ -13,6 +13,7 @@
             <p class="col-lg-10 fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At commodi sint totam unde. Autem, pariatur?.</p>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
+            <span th:text="${error}" class="text-danger"></span>
             <form class="p-4 p-md-5 border rounded-3 bg-light" th:action="@{/signup}" method="POST" th:object="${user}"
                   id="signUpForm">
                 <div class="form-floating mb-3">

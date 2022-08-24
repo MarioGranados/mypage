@@ -27,15 +27,20 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        //will set roles here later
+    public String saveUser(@ModelAttribute User user, Model model){
+        if(userDao.findUserByUsername(user.getUsername()) == null) {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            //will set roles here later
 /*
         UserWithRoles userWithRoles = new UserWithRoles(user);
 */
 
-        userDao.save(user);
+            userDao.save(user);
+        } else {
+            model.addAttribute("error", "There seems to already be an account associated with that information");
+            return "signup";
+        }
         return "redirect:/login";
     }
 }

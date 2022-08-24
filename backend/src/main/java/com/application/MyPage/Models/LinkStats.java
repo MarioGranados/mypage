@@ -12,6 +12,9 @@ public class LinkStats {
     @Column
     private double clicks;
 
+    @OneToOne
+    private Link link;
+
     public LinkStats() {}
 
     public LinkStats(Long id, double clicks) {

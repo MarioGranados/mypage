@@ -23,12 +23,23 @@ public class ProfileController {
         this.userRepo = userRepo;
     }
 
-    @GetMapping("/profile")
-    private String profile(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private void setPageData(User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("link", new Link());
         model.addAttribute("links", linkRepo.findAll());
+    }
+
+    @GetMapping("/mypage/{username}")
+    private String otherUsers(@PathVariable String username, Model model) {
+        User user = userRepo.findUserByUsername(username);
+        setPageData(user, model);
+        return "otherUser";
+    }
+
+    @GetMapping("/profile")
+    private String profile(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        setPageData(user, model);
         return "profile";
     }
 
