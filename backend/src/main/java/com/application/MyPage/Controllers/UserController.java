@@ -35,7 +35,8 @@ public class UserController {
 /*
         UserWithRoles userWithRoles = new UserWithRoles(user);
 */
-
+            user.setStatus("Welcome To MyPage!");
+            user.setBio("I am a content creator");
             userDao.save(user);
         } else {
             model.addAttribute("error", "There seems to already be an account associated with that information");

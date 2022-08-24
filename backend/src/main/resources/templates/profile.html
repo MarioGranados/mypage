@@ -16,10 +16,6 @@
 <body>
 <nav th:replace="partials :: navbar"></nav>
 <main>
-    <h1 class="display-4 mx-4"><span th:text="${user.getUsername()}"></span></h1>
-    <h5>
-        <span th:text="${user.getBio()}"></span>
-    </h5>
     <form action="">
         <label for="status">
             <span th:text="${user.getStatus()}"></span>
@@ -31,10 +27,11 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Album example</h1>
-                <p class="lead text-muted">Something short and leading about the collection below—its contents, the
-                    creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
-                    entirely.</p>
+                <h1 class="fw-light"><span th:text="${user.getUsername()}"></span></h1>
+                <h4 class="lead text-muted">
+                    <span th:text="${user.getBio()}"></span>
+                </h4>
+                <span th:text="${user.getStatus()}"></span>
                 <p>
                     <a href="#" class="btn btn-primary my-2">Main call to action</a>
                     <a href="#" class="btn btn-secondary my-2">Secondary action</a>
