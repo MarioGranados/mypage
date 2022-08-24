@@ -14,37 +14,60 @@
     </style>
 </head>
 <body>
-
 <nav th:replace="partials :: navbar"></nav>
-<div class="container text-center">
+<main>
     <h1 class="display-4 mx-4"><span th:text="${user.getUsername()}"></span></h1>
     <h5>
         <span th:text="${user.getBio()}"></span>
     </h5>
-
-
-    <div th:replace="partials :: link"></div>
-
-    <form th:action="@{/profile/add-link}" method="post" id="createLinkForm" class="hidden_form" th:object="${link}">
-        <input type="text" name="title" id="title" th:field="*{title}">
-        <label for="title">title</label>
-        <input type="text" name="description" id="description" th:field="*{description}">
-        <label for="description">description</label>
-        <input type="text" name="URL" id="URL" th:field="*{URL}">
-        <label for="URL">URL</label>
-        <input type="text" name="thumbnail" id="thumbnail" th:field="*{thumbnail}">
-        <label for="thumbnail">thumbnail</label>
-        <button class="btn btn-primary" type="submit">Save</button>
+    <form action="">
+        <label for="status">
+            <span th:text="${user.getStatus()}"></span>
+        </label>
+        <input type="text" name="status" id="status" placeholder="what's on your mind?"/>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
 
-    <button class="btn btn-primary " id="createLinkButton" onclick=createNewLink()>+ Add Link</button>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Album example</h1>
+                <p class="lead text-muted">Something short and leading about the collection below—its contents, the
+                    creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
+                    entirely.</p>
+                <p>
+                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                </p>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div th:replace="partials :: cards"></div>
+            </div>
+            <form th:action="@{/profile/add-link}" method="post" id="createLinkForm" class="hidden_form" th:object="${link}">
+                <input type="text" name="title" id="title" th:field="*{title}">
+                <label for="title">title</label>
+                <input type="text" name="description" id="description" th:field="*{description}">
+                <label for="description">description</label>
+                <input type="text" name="URL" id="URL" th:field="*{URL}">
+                <label for="URL">URL</label>
+                <input type="text" name="thumbnail" id="thumbnail" th:field="*{thumbnail}">
+                <label for="thumbnail">thumbnail</label>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+            <button class="btn btn-primary " id="createLinkButton" onclick=createNewLink()>+ Add Link</button>
 
+        </div>
+    </div>
+
+</main>
 
 <footer th:replace="partials :: footer"></footer>
 <script th:replace="partials :: scripts"></script>
-
 <script>
     let createNewLink = () => {
         const hiddenForm = document.querySelector("#createLinkForm");
